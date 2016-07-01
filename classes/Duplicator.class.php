@@ -129,11 +129,13 @@ class Duplicator {
      * @param string $type Type of file (CSV only for now)
      */
     function putFile($type = 'csv') {
+        //This is in classes, so we need parent directory
+        $dirname = dirname(__DIR__) . '/tmp';
         $name = 'dump';
         if( $type == 'csv') {
             //Each table in $data
             foreach($this->data AS $name => $table) {
-                $this->downloadFiles[$name] = tempnam($_SERVER['DOCUMENT_ROOT'] . '/tmp', 'mjfreewayExport'.$name);
+                $this->downloadFiles[$name] = tempnam($dirname, 'mjfreewayExport'.$name.'.csv');
                 $handle = fopen($this->downloadFiles[$name], "w");
 
                 //Write Headers (object property names of first row)
@@ -151,8 +153,8 @@ class Duplicator {
 
         //Build a zipfile with all of the tables in it
         $zip = new ZipArchive();
-        $filename = tempnam($_SERVER['DOCUMENT_ROOT'] . '/tmp', 'mjfreewayExport'.$name) . '.zip';
-        echo $filename;
+        $filename = tempnam($dirname, 'mjfreewayExport'.$name) . '.zip';
+
         if ($zip->open($filename, ZipArchive::CREATE)!==TRUE) {
             $this->error[] = 'Cannot open ' . $filename . '.';
             exit();
@@ -164,7 +166,8 @@ class Duplicator {
         }
 
         $zip->close();
-        $this->zipFile = $filename;
+        $file = basename($filename);
+        $this->zipFile = dirname($_SERVER['REQUEST_URI']) . '/tmp/' . $file;
     }
 
     /**
