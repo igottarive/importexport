@@ -1,7 +1,7 @@
 # Details about the project
 * Big security implications obviously. This needs to be behind a session or a login system to make sure the user has the appropriate permissions
 * For now we will assume the fields in the db are varchar(500) DEFAULT NULL on creation and that will cover our need
-
+* Need a cron job to cleanup the tmp directory as the export files are stored there
 # Requirements PHP Engineer Assessment
 
 MJ Freeway is in need of an application that will allow a user to back up specific tables in a database to a file and restore them to the same database with a different table name. The core of this application should be written in PHP. You can use other items such as jquery, bootstrap, etc. for the front end.

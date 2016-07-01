@@ -39,7 +39,7 @@
         </div>
 
         <div class="page-header">
-            <h1><a href="/index.html">Home </a>-> Exporter</h1>
+            <h1><a href="index.html">Home </a>-> Exporter</h1>
         </div>
 
         <!-- If the zipfile is present, display the link, if not, display the form to make one -->

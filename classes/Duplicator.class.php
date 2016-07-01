@@ -133,7 +133,7 @@ class Duplicator {
         if( $type == 'csv') {
             //Each table in $data
             foreach($this->data AS $name => $table) {
-                $this->downloadFiles[$name] = tempnam('/tmp', 'mjfreewayExport'.$name);
+                $this->downloadFiles[$name] = tempnam($_SERVER['DOCUMENT_ROOT'] . '/tmp', 'mjfreewayExport'.$name);
                 $handle = fopen($this->downloadFiles[$name], "w");
 
                 //Write Headers (object property names of first row)
@@ -151,7 +151,8 @@ class Duplicator {
 
         //Build a zipfile with all of the tables in it
         $zip = new ZipArchive();
-        $filename = tempnam('/tmp', 'mjfreewayExport'.$name) . '.zip';
+        $filename = tempnam($_SERVER['DOCUMENT_ROOT'] . '/tmp', 'mjfreewayExport'.$name) . '.zip';
+        echo $filename;
         if ($zip->open($filename, ZipArchive::CREATE)!==TRUE) {
             $this->error[] = 'Cannot open ' . $filename . '.';
             exit();
