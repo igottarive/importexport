@@ -13,6 +13,5 @@ if(isset($_POST['tables'])) {
     $duper->putFile();
 }
 
-echo"<pre>";print_r($_SERVER);
 //Get the HTML to the user
 require_once 'templates/export.php';
