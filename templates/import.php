@@ -44,7 +44,7 @@
         </div>
 
         <!-- Display any Errors -->
-        <?php if(count($duper->get_error()) > 0) : ?>
+        <?php if(isset($duper) && count($duper->get_error()) > 0) : ?>
             <div class="alert alert-danger">
                 Error:
                 <?php foreach($duper->get_error() AS $err) : ?>
@@ -53,7 +53,7 @@
             </div>
         <?php endif; ?>
         <!-- Display any Messages -->
-        <?php if(count($duper->get_message()) > 0) : ?>
+        <?php if(isset($duper) && count($duper->get_message()) > 0) : ?>
             <div class="alert alert-info">
                 Info:
                 <?php foreach($duper->get_message() AS $msg) : ?>

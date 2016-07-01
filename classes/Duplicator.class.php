@@ -112,8 +112,9 @@ class Duplicator {
                     $statement = $this->db->prepare($q);
                     if($statement->execute()) {
                         $this->msg[] = 'Row ' . $row . ' inserted.';
+                    } else {
+                        $this->error[] = 'Row ' . $row . ' not inserted.';
                     }
-                    $this->error[] = 'Row ' . $row . ' not inserted.';
                 }
                 $row++;
             }
@@ -239,4 +240,3 @@ class Duplicator {
         return $this->error;
     }
 }
-?>
